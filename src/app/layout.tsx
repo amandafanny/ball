@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
+import "@mantine/core/styles.css";
+import "@coinbase/onchainkit/styles.css";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Provider } from "./components/provider";
+import { ColorSchemeScript } from "@mantine/core";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,10 +29,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <ColorSchemeScript />
+        <link rel="shortcut icon" href="/favicon.svg" />
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Provider>{children}</Provider>
       </body>
     </html>
   );
