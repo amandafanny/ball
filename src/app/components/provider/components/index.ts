@@ -1,4 +1,4 @@
-import TextInput from "./textinput";
+import TextInput from "./textInput";
 import Tabs from "./tabs";
 
 const CostomComponent = {

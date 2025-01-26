@@ -7,8 +7,7 @@ export default function SignUp() {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const register = async (event: any) => {
+  const register = async () => {
     if (
       confirmPassword === password &&
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])(?=.{8,32})/.test(

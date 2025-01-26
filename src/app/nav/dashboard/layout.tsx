@@ -1,12 +1,6 @@
 "use client";
-import React, { createContext, useState } from "react";
-
-export const DashboardLayoutContext = createContext({
-  msg: "",
-  setMsg: (msg: string): void => {
-    console.log(msg);
-  },
-});
+import { DashboardLayoutContext } from "@/app/context";
+import React, { useState } from "react";
 
 export default function BullLayout({
   children,

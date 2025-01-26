@@ -1,8 +1,9 @@
 "use client";
+import { LayoutContext } from "@/app/context";
 import { Box, Tabs, TextInput } from "@mantine/core";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 
 const tabs = [
   {
@@ -21,8 +22,6 @@ const tabs = [
     color: "#000",
   },
 ];
-
-export const LayoutContext = createContext({});
 
 export default function BullLayout({
   children,

@@ -1,27 +1,9 @@
 "use client";
-import { Box, Flex, Tabs, Text, Title } from "@mantine/core";
+import { Box, Flex, Text, Title } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
 
-const tabs = [
-  {
-    value: "login",
-    label: "Login",
-  },
-  {
-    value: "signup",
-    label: "Sign Up",
-  },
-];
-
-export default function AuthLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const router = useRouter();
-
+export default function Home() {
   return (
     <Flex
       direction={"column"}

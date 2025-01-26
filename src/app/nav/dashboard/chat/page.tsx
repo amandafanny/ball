@@ -2,7 +2,7 @@
 import { Flex, Center, Box, Select, Textarea } from "@mantine/core";
 import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
-import { DashboardLayoutContext } from "../layout";
+import { DashboardLayoutContext } from "@/app/context";
 import SHA256 from "crypto-js/sha256";
 import useToken from "@/app/hooks/useToken";
 

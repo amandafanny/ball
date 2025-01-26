@@ -1,23 +1,14 @@
 "use client";
-import {
-  Text,
-  Flex,
-  TextInput,
-  Title,
-  ActionIcon,
-  Box,
-  Grid,
-  Center,
-} from "@mantine/core";
+import { Text, Flex, TextInput, Title, Grid, Center } from "@mantine/core";
 import Image from "next/image";
 import { useState } from "react";
 interface ItemProps {
-  imgPath: string;
+  creator: string;
   title: string;
   description: string;
 }
 
-const Item = ({ title, description, imgPath }: ItemProps) => {
+const Item = ({ title, description, creator }: ItemProps) => {
   return (
     <Flex
       align={"center"}
@@ -37,7 +28,7 @@ const Item = ({ title, description, imgPath }: ItemProps) => {
           c="#666666"
           className="border-b-[1px] border-[#FFFFFFA3] cursor-pointer"
         >
-          creator: name
+          creator: {creator}
         </Text>
       </Flex>
     </Flex>
@@ -49,32 +40,32 @@ const itemList = [
     title: "Wallet Detail",
     description:
       "Here you will be able to see Details of the wallet and other related content.",
-    imgPath: "/img/wallet_white.png",
+    creator: "/img/wallet_white.png",
     msg: "Check my wallet balance.",
   },
   {
     title: "Get Agent Onchain",
     description:
       "You can do it here Quickly register for ANS or other content related to ANS.",
-    imgPath: "/img/file.png",
+    creator: "/img/file.png",
     msg: "Could you get my agent onchain?",
   },
   {
     title: "Mint/Burn Balls",
     description:
       "This will be about Explanation or other content Mint/Burn Balls.",
-    imgPath: "/img/speak.png",
+    creator: "/img/speak.png",
     msg: "Can you wrap a ball for me?",
   },
   {
     title: "Display Ball Pools",
     description: "This is about Explanation and other content of deploy ball.",
-    imgPath: "/img/voice.png",
+    creator: "/img/voice.png",
     msg: "Show current ball pools.",
   },
 ];
 
-export default function Dashboard() {
+export default function Agent() {
   const [msg, setMsg] = useState("");
 
   return (
@@ -132,13 +123,8 @@ export default function Dashboard() {
         </Title>
         <Grid className="w-[736px]">
           {itemList.map((item) => (
-            <Grid.Col span={6}>
-              <Item
-                key={item.title}
-                title={item.title}
-                description={item.description}
-                imgPath={item.imgPath}
-              />
+            <Grid.Col key={item.title} span={6}>
+              <Item {...item} />
             </Grid.Col>
           ))}
         </Grid>

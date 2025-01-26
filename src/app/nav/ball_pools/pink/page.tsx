@@ -1,7 +1,7 @@
 "use client";
-import { Button, Flex, Progress, Text } from "@mantine/core";
+import { Button, Flex, Text } from "@mantine/core";
 import { useContext } from "react";
-import { LayoutContext } from "../layout";
+import { LayoutContext } from "@/app/context";
 
 interface ItemProps {
   name: string;
@@ -21,7 +21,7 @@ const data = [
   },
 ];
 
-const Item = ({ name, marketCap, amount, total, price }: ItemProps) => {
+const Item = ({ name, marketCap, amount, price }: ItemProps) => {
   return (
     <Flex
       className="bg-[#FFF3F5] h-[72px] rounded-[20px] p-[16px]"

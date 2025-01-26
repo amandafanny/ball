@@ -2,7 +2,7 @@
 import { Text, Flex, TextInput, Title, ActionIcon } from "@mantine/core";
 import Image from "next/image";
 import { useContext, useState } from "react";
-import { DashboardLayoutContext } from "./layout";
+import { DashboardLayoutContext } from "@/app/context";
 import { useRouter } from "next/navigation";
 
 interface ItemProps {

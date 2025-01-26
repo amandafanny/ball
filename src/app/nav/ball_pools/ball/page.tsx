@@ -1,7 +1,7 @@
 "use client";
+import { LayoutContext } from "@/app/context";
 import { Button, Flex, Progress, Text } from "@mantine/core";
 import { useContext } from "react";
-import { LayoutContext } from "../layout";
 
 interface ItemProps {
   name: string;
