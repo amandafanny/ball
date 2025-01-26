@@ -1,19 +1,16 @@
+// api/user/agentInfo
+
 import { baseUrl } from "..";
 
-export const POST = async (request: Request) => {
-  const requestData = JSON.parse(await request.text());
+export const GET = async (request: Request) => {
+  console.log("request", request);
+  // const requestData = JSON.parse(await request.text());
 
-  const response = await fetch(`${baseUrl}/register`, {
+  const response = await fetch(`${baseUrl}/user/agentInfo`, {
     headers: {
       "Content-Type": "application/json",
+      // token: requestData.token,
     },
-    body: JSON.stringify({
-      type: 1,
-      username: requestData.username,
-      password: requestData.password,
-      confirmPassword: requestData.confirmPassword,
-    }),
-    method: "post",
   });
 
   if (!response.ok) {
@@ -27,6 +24,9 @@ export const POST = async (request: Request) => {
   const data = await response.json();
   return new Response(JSON.stringify(data), {
     status: 200,
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Set-Cookie": `wallet_address=${data.default_address_id}`,
+    },
   });
 };

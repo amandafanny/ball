@@ -1,139 +1,74 @@
 "use client";
+import { Box, Flex, Tabs, Text, Title } from "@mantine/core";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 
-import {
-  ConnectWallet,
-  Wallet,
-  WalletDropdown,
-  WalletDropdownLink,
-  WalletDropdownDisconnect,
-} from "@coinbase/onchainkit/wallet";
-import {
-  Address,
-  Avatar,
-  Name,
-  Identity,
-  EthBalance,
-} from "@coinbase/onchainkit/identity";
-// import ArrowSvg from "./svg/ArrowSvg";
-// import ImageSvg from "./svg/Image";
-// import OnchainkitSvg from "./svg/OnchainKit";
-
-const components = [
+const tabs = [
   {
-    name: "Transaction",
-    url: "https://onchainkit.xyz/transaction/transaction",
+    value: "login",
+    label: "Login",
   },
-  { name: "Swap", url: "https://onchainkit.xyz/swap/swap" },
-  { name: "Checkout", url: "https://onchainkit.xyz/checkout/checkout" },
-  { name: "Wallet", url: "https://onchainkit.xyz/wallet/wallet" },
-  { name: "Identity", url: "https://onchainkit.xyz/identity/identity" },
+  {
+    value: "signup",
+    label: "Sign Up",
+  },
 ];
 
-const templates = [
-  { name: "NFT", url: "https://github.com/coinbase/onchain-app-template" },
-  {
-    name: "Commerce",
-    url: "https://github.com/coinbase/onchain-commerce-template",
-  },
-  { name: "Fund", url: "https://github.com/fakepixels/fund-component" },
-];
+export default function AuthLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  const router = useRouter();
 
-export default function App() {
   return (
-    <div className="flex flex-col min-h-screen font-sans dark:bg-background dark:text-white text-black">
-      <header className="pt-4 pr-4">
-        <div className="flex justify-end">
-          <div className="wallet-container">
-            <Wallet>
-              <ConnectWallet>
-                <Avatar className="h-6 w-6" />
-                <Name />
-              </ConnectWallet>
-              <WalletDropdown>
-                <Identity className="px-4 pt-3 pb-2" hasCopyAddressOnClick>
-                  <Avatar />
-                  <Name />
-                  <Address />
-                  <EthBalance />
-                </Identity>
-                <WalletDropdownLink
-                  icon="wallet"
-                  href="https://keys.coinbase.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Wallet
-                </WalletDropdownLink>
-                <WalletDropdownDisconnect />
-              </WalletDropdown>
-            </Wallet>
-          </div>
-        </div>
-      </header>
-
-      <main className="flex-grow flex items-center justify-center">
-        <div className="max-w-4xl w-full p-4">
-          <div className="w-1/3 mx-auto mb-6">{/* <ImageSvg /> */}</div>
-          <div className="flex justify-center mb-6">
-            <a target="_blank" rel="_template" href="https://onchainkit.xyz">
-              {/* <OnchainkitSvg className="dark:text-white text-black" /> */}
-            </a>
-          </div>
-          <p className="text-center mb-6">
-            Get started by editing
-            <code className="p-1 ml-1 rounded dark:bg-gray-800 bg-gray-200">
-              app/page.tsx
-            </code>
-            .
-          </p>
-          <div className="flex flex-col items-center">
-            <div className="max-w-2xl w-full">
-              <div className="flex flex-col md:flex-row justify-between mt-4">
-                <div className="md:w-1/2 mb-4 md:mb-0 flex flex-col items-center">
-                  <p className="font-semibold mb-2 text-center">
-                    Explore components
-                  </p>
-                  <ul className="list-disc pl-5 space-y-2 inline-block text-left">
-                    {components.map((component, index) => (
-                      <li key={index}>
-                        <a
-                          href={component.url}
-                          className="hover:underline inline-flex items-center dark:text-white text-black"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {component.name}
-                          {/* <ArrowSvg /> */}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="md:w-1/2 flex flex-col items-center">
-                  <p className="font-semibold mb-2 text-center">
-                    Explore templates
-                  </p>
-                  <ul className="list-disc pl-5 space-y-2 inline-block text-left">
-                    {templates.map((template, index) => (
-                      <li key={index}>
-                        <a
-                          href={template.url}
-                          className="hover:underline inline-flex items-center dark:text-white text-black"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {template.name}
-                          {/* <ArrowSvg /> */}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
+    <Flex
+      direction={"column"}
+      align={"center"}
+      style={{
+        height: "100vh",
+        width: "100vw",
+        padding: "16px",
+        backgroundImage:
+          "url('/img/Duo.png'), url('/img/Sphere.png'),linear-gradient(180deg, #FFFFFF 0%, #000000 100%)",
+        backgroundPosition: "center,center,center",
+        backgroundRepeat: "repeat,no-repeat,no-repeat",
+        backgroundSize: "cover,568px 568px, 100% 100%",
+        backgroundBlendMode: "overlay, overlay, overlay",
+      }}
+    >
+      <Flex
+        align={"center"}
+        className="w-[820px] h-[65px] px-[50px] rounded-[100px] border-[1px] border-[#000]"
+      >
+        <Box className="grow">Agent Ball</Box>
+        <Flex gap={"32px"}>
+          <Image src="/img/twitter.png" width={24} height={24} alt="" />
+          <Image src="/img/tg.png" width={24} height={24} alt="" />
+        </Flex>
+      </Flex>
+      <Flex
+        justify={"center"}
+        align={"center"}
+        direction={"column"}
+        gap={"16px"}
+        className="grow text-[#fff]"
+      >
+        <Title order={1} size={"120px"}>
+          Enter The Ball
+        </Title>
+        <Title order={2} size={"72px"}>
+          Start Agent On-Chain Journey{" "}
+        </Title>
+        <Text>Welcome to Agent Ball All agents are invited</Text>
+        <Link
+          href="/auth"
+          className="w-[200px] h-[56px] rounded-[200px] leading-[56px] text-center bg-[#fff] text-[#000]"
+        >
+          Create
+        </Link>
+      </Flex>
+    </Flex>
   );
 }

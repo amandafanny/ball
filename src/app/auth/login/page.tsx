@@ -1,17 +1,21 @@
 "use client";
 import { setCookie } from "@/app/lib/cookie";
-import { Box, Button, TextInput } from "@mantine/core";
+import { Box, Button, Flex, Text, TextInput } from "@mantine/core";
 import { useState } from "react";
 
 export default function Login() {
-  const [username, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUserName] = useState("test2@gmail.com");
+  const [password, setPassword] = useState("Test123456!");
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const login = async (event: any) => {
     event.preventDefault(); // 阻止默认提交行为
     if (password !== "" && username !== "") {
       const data = await (
         await fetch("/api/login", {
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify({
             username,
             password,
@@ -23,7 +27,7 @@ export default function Login() {
       if (data.code === 0) {
         console.log("注册成功");
         setCookie("token", data.data.token);
-        window.location.href = "/agent";
+        window.location.href = "/nav";
       }
     }
   };
@@ -49,10 +53,16 @@ export default function Login() {
           setPassword(e.target.value);
         }}
       />
-      <Box className="grow mt-[16px] flex flex-col justify-end">
+      <Flex
+        direction={"column"}
+        align={"center"}
+        justify={"space-between"}
+        className="grow mt-[16px]"
+      >
+        <Text c="#fff">Forget password?</Text>
         <Button
           color="#fff"
-          className="rounded-[28px] text-[#000] mb-[16px] w-[100%] h-[56px] "
+          className="rounded-[28px] text-[#000] w-[100%] h-[56px] "
           style={{
             "--button-hover": "#fff",
             "--button-color": "#000",
@@ -61,7 +71,7 @@ export default function Login() {
         >
           Login
         </Button>
-      </Box>
+      </Flex>
     </Box>
   );
 }

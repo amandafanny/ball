@@ -56,7 +56,7 @@ export default function SignUp() {
       />
       <TextInput
         required
-        label="confirmPassword"
+        label="ConfirmPassword"
         type="password"
         placeholder="Enter your confirmed Password"
         value={confirmPassword}
