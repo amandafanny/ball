@@ -1,6 +1,7 @@
 "use client";
-import { LayoutContext } from "@/app/context";
+import { DashboardLayoutContext, LayoutContext } from "@/app/context";
 import { Button, Flex, Progress, Text } from "@mantine/core";
+import { useRouter } from "next/navigation";
 import { useContext } from "react";
 
 interface ItemProps {
@@ -22,6 +23,9 @@ const data = [
 ];
 
 const Item = ({ name, marketCap, amount, total, price }: ItemProps) => {
+  const dashboardLayoutContext = useContext(DashboardLayoutContext);
+  const router = useRouter();
+
   return (
     <Flex
       className="bg-[#FAFAFA] h-[72px] rounded-[20px] p-[16px]"
@@ -71,6 +75,10 @@ const Item = ({ name, marketCap, amount, total, price }: ItemProps) => {
         <Button
           color="#ECEDEE"
           className="rounded-[40px] ml-[16px] text-[#000] text-[14px]"
+          onClick={() => {
+            dashboardLayoutContext.setMsg("");
+            router.push("/nav/dashboard/chat");
+          }}
         >
           Wrap
         </Button>

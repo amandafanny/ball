@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 // Edge Middleware runs on the Edge runtime, a runtime built on top of the V8 JavaScript engine.
 export const config = {
-  matcher: ["/nav/:path", "/nav/:path/:path"],
+  matcher: ["/nav/:path*", "/nav/:path*/:path*"],
 };
 
 export default async function middleware(request: NextRequest) {
