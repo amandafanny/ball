@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-export const LayoutContext = createContext({});
+export const LayoutContext = createContext({ search: "" });
 
 export const DashboardLayoutContext = createContext({
   msg: "",

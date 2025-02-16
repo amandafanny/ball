@@ -1,8 +1,9 @@
 "use client";
 import { DashboardLayoutContext, LayoutContext } from "@/app/context";
+import useToken from "@/app/hooks/useToken";
 import { Button, Flex, Progress, Text } from "@mantine/core";
 import { useRouter } from "next/navigation";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 interface ItemProps {
   name: string;
@@ -12,17 +13,20 @@ interface ItemProps {
   price: number;
 }
 
-const data = [
-  {
-    name: "Name/ETH",
-    marketCap: 30000,
-    amount: 20,
-    total: 230,
-    price: 0.34,
-  },
-];
+// const data = [
+//   {
+//     name: "testfork1",
+//     amount: 1,
+//     price: 0,
+//     marketCap: 0,
+//     ballPollProgress: 0,
+//     inBallPool: null,
+//     pinkPeriodEndsIn: null,
+//     increase: null,
+//   },
+// ];
 
-const Item = ({ name, marketCap, amount, total, price }: ItemProps) => {
+const Item = ({ name, marketCap, amount, total = 320, price }: ItemProps) => {
   const dashboardLayoutContext = useContext(DashboardLayoutContext);
   const router = useRouter();
 
@@ -88,13 +92,40 @@ const Item = ({ name, marketCap, amount, total, price }: ItemProps) => {
 };
 
 export default function Ball() {
-  const a = useContext(LayoutContext);
-  console.log("a", a);
+  const obj = useContext(LayoutContext);
+  const [data, setData] = useState<ItemProps[]>([]);
 
+  const token = useToken();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("/api/balls", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          tag: "balls",
+          name: obj.search,
+          pageSize: 10,
+          pageNo: 1,
+          token,
+        }),
+      });
+      const data = await response.json();
+      setData(data.data.ballList);
+    };
+    if (token) {
+      fetchData();
+    }
+  }, [token, obj.search]);
+
+  console.log("data", data);
   return (
     <Flex
       direction={"column"}
       className="w-[100%] h-[100%] overflow-x-hidden p-[16px]"
+      gap={"8px"}
     >
       {data.map((val) => (
         <Item key={val.name} {...val} />

@@ -1,25 +1,28 @@
 "use client";
 import { Button, Flex, Text } from "@mantine/core";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LayoutContext } from "@/app/context";
+import useToken from "@/app/hooks/useToken";
 
 interface ItemProps {
   name: string;
   marketCap: number;
   amount: number;
-  total: number;
   price: number;
 }
 
-const data = [
-  {
-    name: "Name/ETH",
-    marketCap: 30000,
-    amount: 20,
-    total: 230,
-    price: 0.34,
-  },
-];
+// const data = [
+//   {
+//     name: "testfork1",
+//     amount: 1,
+//     price: 0,
+//     marketCap: 0,
+//     ballPollProgress: 0,
+//     inBallPool: null,
+//     pinkPeriodEndsIn: null,
+//     increase: null,
+//   },
+// ];
 
 const Item = ({ name, marketCap, amount, price }: ItemProps) => {
   return (
@@ -82,12 +85,41 @@ const Item = ({ name, marketCap, amount, price }: ItemProps) => {
 };
 
 export default function Pink() {
-  const a = useContext(LayoutContext);
-  console.log("a", a);
+  const obj = useContext(LayoutContext);
+
+  const [data, setData] = useState<ItemProps[]>([]);
+
+  const token = useToken();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("/api/balls", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          tag: "pink",
+          name: obj.search,
+          pageSize: 10,
+          pageNo: 1,
+          token,
+        }),
+      });
+      const data = await response.json();
+      setData(data.data.ballList);
+    };
+    if (token) {
+      fetchData();
+    }
+  }, [token, obj.search]);
+
+  console.log("data", data);
 
   return (
     <Flex
       direction={"column"}
+      gap={"8px"}
       className="w-[100%] h-[100%] overflow-x-hidden p-[16px]"
     >
       {data.map((val) => (
