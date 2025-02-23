@@ -94,8 +94,9 @@ export default function Dashboard() {
     if (token === null) {
       return;
     }
+    console.log("process.env.NEXT_PUBLIC_CHAT", process.env.NEXT_PUBLIC_CHAT);
     // 建立 WebSocket 连接
-    const ws = new WebSocket(`ws://test-api.agentball.ai/chat?token=${token}`);
+    const ws = new WebSocket(`${process.env.NEXT_PUBLIC_CHAT}?token=${token}`);
 
     setSocket(ws);
 

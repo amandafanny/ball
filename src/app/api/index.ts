@@ -1,1 +1,1 @@
-export const baseUrl = "http://test-api.agentball.ai/api";
+export const baseUrl = process.env.BASE_URL;

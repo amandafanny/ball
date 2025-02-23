@@ -1,4 +1,3 @@
-import { baseUrl } from "@/app/api";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -16,7 +15,7 @@ export default async function middleware(request: NextRequest) {
   // Specify the correct route based on the requests location
   if (token?.value) {
     const result = await (
-      await fetch(`${baseUrl}/user/agentInfo`, {
+      await fetch(`${process.env.BASE_URL}/user/agentInfo`, {
         headers: {
           token: token.value,
         },
