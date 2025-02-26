@@ -61,23 +61,6 @@ export default function Dashboard() {
       // setMessageList([
       //   { content: initMsg, hash: SHA256(initMsg).toString(), type: "user" },
       // ]);
-      setMessageList([
-        { content: "xx", hash: SHA256("xx").toString(), type: "user" },
-        { content: "xxx", hash: SHA256("xxx").toString(), type: "agent" },
-        { content: "xxxx", hash: SHA256("xxxx").toString(), type: "user" },
-        { content: "xxxxx", hash: SHA256("xxxxx").toString(), type: "agent" },
-        { content: "xxxxxx", hash: SHA256("xxxxxx").toString(), type: "user" },
-        {
-          content: "xxxxxxx",
-          hash: SHA256("xxxxxxx").toString(),
-          type: "agent",
-        },
-        {
-          content: "xxxxxxxx",
-          hash: SHA256("xxxxxxxx").toString(),
-          type: "user",
-        },
-      ]);
       setIsInit(false);
     }
     // return () => {
@@ -86,9 +69,9 @@ export default function Dashboard() {
     // };
   }, [dashboardLayoutContext, isInit]);
 
-  useEffect(() => {
-    console.log("msg==>", messageList);
-  }, [messageList]);
+  // useEffect(() => {
+  //   console.log("msg==>", messageList);
+  // }, [messageList]);
 
   useEffect(() => {
     if (token === null) {
